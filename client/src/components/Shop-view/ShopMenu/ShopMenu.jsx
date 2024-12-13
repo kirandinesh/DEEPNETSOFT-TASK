@@ -137,7 +137,7 @@ function ShopMenu() {
           <Button onClick={handleAddMenu}>Add Menu</Button>
         </div>
       )}
-      {/* Menus Display Section */}
+     
       <div
         className="w-full bg-cover bg-center px-5 py-10"
         style={{ backgroundImage: `url(${menuBanner3})` }}
