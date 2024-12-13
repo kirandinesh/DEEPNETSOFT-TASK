@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar/Navbar";
-import ShopMenu from "../ShopMenu/ShopMenu";
+
 import Footer from "@/components/Footer/Footer";
+import ShopMenu from "@/components/Shop-view/ShopMenu";
 
 function ShopLayout() {
   return (
