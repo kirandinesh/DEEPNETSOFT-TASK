@@ -100,8 +100,8 @@ function ShopMenu() {
           <div
             key={index}
             className={`w-[73px] h-[32px] bg-black border-[1px] border-[#0796EF] 
-            font-title text-[12px] text-white flex items-center justify-center cursor-pointer
-            ${activeMenuIndex === index ? "bg-[#0796EF]" : ""}`}
+          font-title text-[12px] text-white flex items-center justify-center cursor-pointer
+          ${activeMenuIndex === index ? "bg-active" : ""}`} // Apply active class conditionally
             onClick={() => setActiveMenuIndex(index)}
           >
             {menu.name}
@@ -137,7 +137,7 @@ function ShopMenu() {
           <Button onClick={handleAddMenu}>Add Menu</Button>
         </div>
       )}
-     
+
       <div
         className="w-full bg-cover bg-center px-5 py-10"
         style={{ backgroundImage: `url(${menuBanner3})` }}

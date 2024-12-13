@@ -6,6 +6,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundColor: {
+        active: "#0796EF",
+      },
       letterSpacing: {
         "3p": "3%",
       },
