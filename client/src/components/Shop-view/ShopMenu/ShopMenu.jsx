@@ -101,7 +101,10 @@ function ShopMenu() {
             key={index}
             className={`w-[73px] h-[32px] bg-black border-[1px] border-[#0796EF] 
           font-title text-[12px] text-white flex items-center justify-center cursor-pointer
-          ${activeMenuIndex === index ? "bg-active" : ""}`} // Apply active class conditionally
+          `}
+            style={{
+              backgroundColor: activeMenuIndex === index ? "#0796EF" : "black", // Apply dynamic background color
+            }}
             onClick={() => setActiveMenuIndex(index)}
           >
             {menu.name}
