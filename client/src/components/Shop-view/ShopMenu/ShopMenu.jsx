@@ -39,7 +39,7 @@ function ShopMenu() {
   }, [dispatch]);
 
   useEffect(() => {
-    const savedActiveMenuIndex = localStorage.getItem("activeMenuIndex");
+    const savedActiveMenuIndex = sessionStorage.getItem("activeMenuIndex");
     if (savedActiveMenuIndex) {
       setActiveMenuIndex(parseInt(savedActiveMenuIndex, 10));
     }
@@ -47,7 +47,7 @@ function ShopMenu() {
 
   useEffect(() => {
     if (activeMenuIndex !== null) {
-      localStorage.setItem("activeMenuIndex", activeMenuIndex);
+      sessionStorage.setItem("activeMenuIndex", activeMenuIndex);
     }
   }, [activeMenuIndex]);
 
