@@ -15,6 +15,11 @@ import { Plus } from "lucide-react";
 import ShopMenuTile from "./ShopMenuTile";
 import { Button } from "@/components/ui/button";
 import { addMenu, addMenuItem, fetchMenus } from "@/features/menu/menu-slice";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 function ShopMenu() {
   const [menuForm, setMenuForm] = useState({ name: "", description: "" });
@@ -91,55 +96,69 @@ function ShopMenu() {
           </p>
         </div>
       </div>
-
-      <div
-        className="w-full h-[60px] flex items-center justify-center relative"
-        style={{ backgroundImage: `url(${menuBanner2})` }}
-      >
-        {menus.map((menu, index) => (
-          <div
-            key={index}
-            className={`w-[73px] h-[32px] bg-black border-[1px] border-[#0796EF] 
+      <div className="relative">
+        <div
+          className="w-full h-[80px] flex items-center justify-center  overflow-y-hidden
+        overflow-x-auto
+        "
+          style={{ backgroundImage: `url(${menuBanner2})` }}
+        >
+          {menus.map((menu, index) => (
+            <div
+              key={index}
+              className={`w-[73px] h-[32px] bg-black border-[1px] border-[#0796EF] 
           font-title text-[12px] text-white flex items-center justify-center cursor-pointer
+          flex-shrink-0
           `}
-            style={{
-              backgroundColor: activeMenuIndex === index ? "#0796EF" : "black", // Apply dynamic background color
-            }}
-            onClick={() => setActiveMenuIndex(index)}
-          >
-            {menu.name}
-          </div>
-        ))}
-        <div className="flex gap-2 items-center">
-          <div
-            onClick={() => setShowMenuForm(!showMenuForm)}
-            className="cursor-pointer absolute top-0 right-2"
-          >
-            <Plus color="white" />
+              style={{
+                backgroundColor:
+                  activeMenuIndex === index ? "#0796EF" : "black",
+              }}
+              onClick={() => setActiveMenuIndex(index)}
+            >
+              {menu.name}
+            </div>
+          ))}
+          <div className="flex gap-2 items-center justify-center">
+            <div
+              onClick={() => setShowMenuForm(!showMenuForm)}
+              className="cursor-pointer absolute top-0 "
+            >
+              <Popover>
+                <PopoverTrigger>
+                  <Plus color="white" />
+                </PopoverTrigger>
+                <PopoverContent className="bg-black absolute top-0 -right-0">
+                  <div className="flex flex-col gap-2 items-center">
+                    <input
+                      type="text"
+                      placeholder="Menu Name"
+                      value={menuForm.name}
+                      onChange={(e) =>
+                        setMenuForm({ ...menuForm, name: e.target.value })
+                      }
+                      className="w-1/2 p-1"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Description"
+                      value={menuForm.description}
+                      onChange={(e) =>
+                        setMenuForm({
+                          ...menuForm,
+                          description: e.target.value,
+                        })
+                      }
+                      className="w-1/2 p-1"
+                    />
+                    <Button onClick={handleAddMenu}>Add Tab</Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
         </div>
       </div>
-      {showMenuForm && (
-        <div className="flex flex-col gap-2 items-center">
-          <input
-            type="text"
-            placeholder="Menu Name"
-            value={menuForm.name}
-            onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
-            className="w-24 p-1"
-          />
-          <input
-            type="text"
-            placeholder="Description"
-            value={menuForm.description}
-            onChange={(e) =>
-              setMenuForm({ ...menuForm, description: e.target.value })
-            }
-            className="w-36 p-1"
-          />
-          <Button onClick={handleAddMenu}>Add Menu</Button>
-        </div>
-      )}
 
       <div
         className="w-full bg-cover bg-center px-5 py-10"
@@ -154,7 +173,48 @@ function ShopMenu() {
               className="absolute top-2 right-2"
               onClick={() => setShowMenuListForm(!showMenuListForm)}
             >
-              <Plus />
+              <Popover>
+                <PopoverTrigger>
+                  <Plus />
+                </PopoverTrigger>
+                <PopoverContent className="bg-black absolute top-0 -right-0 overflow-hidden">
+                  <div className="flex flex-col justify-between gap-2 pt-5 text-black">
+                    <div className="flex justify-between gap-2">
+                      <input
+                        className="w-full"
+                        type="text"
+                        placeholder="Item Name"
+                        value={itemForm.name}
+                        onChange={(e) =>
+                          setItemForm({ ...itemForm, name: e.target.value })
+                        }
+                      />
+                      <input
+                        className="w-full"
+                        type="number"
+                        placeholder="Price"
+                        value={itemForm.price}
+                        onChange={(e) =>
+                          setItemForm({ ...itemForm, price: e.target.value })
+                        }
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Description"
+                      value={itemForm.description}
+                      onChange={(e) =>
+                        setItemForm({
+                          ...itemForm,
+                          description: e.target.value,
+                        })
+                      }
+                      className="w-full p-1"
+                    />
+                    <Button onClick={handleAddItem}>Add Item</Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
             <CardHeader className="w-full text-white text-center flex justify-center items-center">
               <div
@@ -173,47 +233,7 @@ function ShopMenu() {
                 <div className="bg-white w-[50px] h-[1.5px]"></div>
               </div>
             </CardHeader>
-            <div className="flex flex-col gap-2">
-              {showMenuListForm ? (
-                <div className="flex flex-col justify-between gap-2 pt-5 text-black">
-                  <div className="flex justify-between">
-                    <input
-                      type="text"
-                      placeholder="Item Name"
-                      value={itemForm.name}
-                      onChange={(e) =>
-                        setItemForm({ ...itemForm, name: e.target.value })
-                      }
-                      className=" p-1"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Price"
-                      value={itemForm.price}
-                      onChange={(e) =>
-                        setItemForm({ ...itemForm, price: e.target.value })
-                      }
-                      className="w-20 p-1"
-                    />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Description"
-                    value={itemForm.description}
-                    onChange={(e) =>
-                      setItemForm({
-                        ...itemForm,
-                        description: e.target.value,
-                      })
-                    }
-                    className="w-full p-1"
-                  />
-                  <Button onClick={handleAddItem}>Add Item</Button>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
+
             <CardContent className="px-3 py-4 ">
               {menus[activeMenuIndex].items &&
               menus[activeMenuIndex].items.length > 0
