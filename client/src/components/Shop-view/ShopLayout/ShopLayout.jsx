@@ -10,7 +10,7 @@ function ShopLayout() {
     overflow-y-auto
     "
     >
-      <div>
+      <div className="w-full h-full">
         <Navbar />
         <main>
           <ShopMenu />

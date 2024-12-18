@@ -20,7 +20,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-
 const ShopMenuTile = lazy(() => import("./ShopMenuTile"));
 
 function ShopMenu() {
@@ -164,7 +163,6 @@ function ShopMenu() {
         </div>
       </div>
 
-    
       <div
         className="w-full bg-cover bg-center px-5 py-10 lg:px-24"
         style={{ backgroundImage: `url(${menuBanner3})` }}
@@ -222,7 +220,6 @@ function ShopMenu() {
               </Popover>
             </div>
 
-        
             <CardHeader className="w-full text-white text-center flex justify-center items-center">
               <div
                 className="flex justify-center items-center w-full cursor-pointer"
@@ -246,7 +243,6 @@ function ShopMenu() {
               </div>
             </CardHeader>
 
-          
             <CardContent
               className="px-3 py-4 lg:grid lg:grid-cols-2
               lg:gap-x-14  lg:gap-y-5"

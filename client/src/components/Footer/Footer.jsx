@@ -7,7 +7,7 @@ function Footer() {
   return (
     <div
       className="w-full h-full flex flex-col bg-black px-5 py-14
-      mt-14 lg:px-24"
+      mt-24 lg:px-24"
     >
       <div
         className="flex flex-col gap-3 lg:flex-row lg:w-full
