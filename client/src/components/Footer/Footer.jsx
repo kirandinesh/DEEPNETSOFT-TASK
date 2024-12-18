@@ -6,11 +6,11 @@ import emailIcon from "/src/assets/Email.png";
 function Footer() {
   return (
     <div
-      className="w-full h-full flex flex-col bg-black px-5 py-14
-      mt-24 lg:px-24"
+      className="w-full h-full flex flex-col  
+       "
     >
       <div
-        className="flex flex-col gap-3 lg:flex-row lg:w-full
+        className="flex flex-col gap-3 lg:flex-row lg:w-full px-5  lg:px-24
       
       "
       >
@@ -95,6 +95,21 @@ function Footer() {
             </div>
           </div>
         </Card>
+      </div>
+      <div
+        className="bg-[#161616] flex flex-col justify-center items-center p-3 mt-2
+      lg:flex-row lg:justify-between lg:px-24
+      "
+      >
+        <div>
+          <h3 className="text-[#857878] text-[12px]">
+            © 2024 42 Bar & Grill. Developed by Deepnetsoft Solutions.
+          </h3>
+        </div>
+        <div className="flex gap-3">
+          <h3 className="text-[#857878] text-[12px]">Terms & Conditions</h3>
+          <h3 className="text-[#857878] text-[12px]">Privacy Policy</h3>
+        </div>
       </div>
     </div>
   );

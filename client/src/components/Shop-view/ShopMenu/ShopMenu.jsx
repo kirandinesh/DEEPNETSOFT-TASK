@@ -101,10 +101,10 @@ function ShopMenu() {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative w-full">
         <div
-          className="w-full h-[80px] flex items-center justify-center overflow-y-hidden
-        overflow-x-auto gap-2"
+          className="w-full h-[80px] flex items-center  gap-2 
+           overflow-x-auto overflow-y-hidden pt-8 lg:justify-center"
           style={{ backgroundImage: `url(${menuBanner2})` }}
         >
           {menus.map((menu, index) => (
@@ -118,6 +118,7 @@ function ShopMenu() {
                   activeMenuIndex === index ? "#0796EF" : "black",
               }}
               onClick={() => setActiveMenuIndex(index)}
+              aria-label={`Select ${menu.name} menu`}
             >
               {menu.name}
             </div>
@@ -125,11 +126,25 @@ function ShopMenu() {
           <div className="flex gap-2 items-center justify-center">
             <div
               onClick={() => setShowMenuForm(!showMenuForm)}
-              className="cursor-pointer absolute top-0 "
+              className="cursor-pointer absolute top-0 right-2"
             >
               <Popover>
-                <PopoverTrigger>
-                  <Plus color="white" />
+                <PopoverTrigger aria-label="Add new menu">
+                  <div
+                    className="flex bg-black border-[1px] mt-1
+                   border-[#0796EF] p-1 justify-center items-center gap-1
+                   
+                   "
+                  >
+                    <Plus color="white" size={20} />
+                    <h2
+                      className="text-white font-title
+                    text-sm
+                    "
+                    >
+                      ADD TAB
+                    </h2>
+                  </div>
                 </PopoverTrigger>
                 <PopoverContent className="bg-black absolute top-0 -right-0">
                   <div className="flex flex-col gap-2 items-center">

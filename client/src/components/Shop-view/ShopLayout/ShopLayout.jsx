@@ -10,29 +10,16 @@ function ShopLayout() {
     overflow-y-auto
     "
     >
-      <div className="w-full h-full">
-        <Navbar />
-        <main>
+      <div className="w-full h-full flex justify-between flex-col">
+        <header>
+          <Navbar />
+        </header>
+        <main className="flex-grow">
           <ShopMenu />
         </main>
         <footer>
           <Footer />
         </footer>
-        <div
-          className="text-[#857878] text-[12px] bg-[#161616] flex flex-col items-center justify-center h-[55px]
-          font-footerText lg:flex-row lg:justify-between lg:px-24
-          "
-        >
-          <div>
-            <h3 className="text-[#857878] text-[12px]">
-              © 2024 42 Bar & Grill. Developed by Deepnetsoft Solutions.
-            </h3>
-          </div>
-          <div className="flex gap-3">
-            <h3 className="text-[#857878] text-[12px]">Terms & Conditions</h3>
-            <h3 className="text-[#857878] text-[12px]">Privacy Policy</h3>
-          </div>
-        </div>
       </div>
     </div>
   );
