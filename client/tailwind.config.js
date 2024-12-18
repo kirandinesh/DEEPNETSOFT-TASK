@@ -14,6 +14,7 @@ export default {
       },
       dropShadow: {
         custom: "1.5px 1.25px 0px #800020",
+        lgScreen: "4px 3px 0px #800020",
       },
       fontFamily: {
         title: ["Oswald", "sans-serif"],

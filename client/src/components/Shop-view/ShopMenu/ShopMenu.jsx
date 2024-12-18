@@ -86,10 +86,19 @@ function ShopMenu() {
           alt="Menu Banner"
         />
         <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center">
-          <h1 className="text-white font-title text-[40px] font-semibold drop-shadow-custom">
+          <h1
+            className="text-white font-title text-[40px]
+           font-semibold drop-shadow-custom  lg:text-[75px]
+           lg:drop-shadow-lgScreen
+           "
+          >
             MENU
           </h1>
-          <p className="text-white font-par text-center leading-[19.39px]">
+          <p
+            className="text-white font-par text-center leading-[19.39px]
+          lg:text-[18px]
+          "
+          >
             Please take a look at our menu featuring food, drinks, and brunch.
             If you'd like to place an order, use the "Order Online" button
             located below the menu.
@@ -99,7 +108,7 @@ function ShopMenu() {
       <div className="relative">
         <div
           className="w-full h-[80px] flex items-center justify-center  overflow-y-hidden
-        overflow-x-auto
+        overflow-x-auto gap-2 
         "
           style={{ backgroundImage: `url(${menuBanner2})` }}
         >
@@ -108,7 +117,7 @@ function ShopMenu() {
               key={index}
               className={`w-[73px] h-[32px] bg-black border-[1px] border-[#0796EF] 
           font-title text-[12px] text-white flex items-center justify-center cursor-pointer
-          flex-shrink-0
+          flex-shrink-0 lg:h-[49px] lg:w-[114px] lg:text-[16px] lg:tracking-widest
           `}
               style={{
                 backgroundColor:
@@ -161,13 +170,14 @@ function ShopMenu() {
       </div>
 
       <div
-        className="w-full bg-cover bg-center px-5 py-10"
+        className="w-full bg-cover bg-center px-5 py-10 lg:px-24"
         style={{ backgroundImage: `url(${menuBanner3})` }}
       >
         {activeMenuIndex !== null && menus[activeMenuIndex] && (
           <Card
             key={menus[activeMenuIndex]._id}
-            className="w-full bg-transparent rounded-none relative text-white overflow-hidden mb-4"
+            className="w-full bg-transparent rounded-none relative 
+            text-white  mb-4 lg:px-16"
           >
             <div
               className="absolute top-2 right-2"
@@ -221,11 +231,16 @@ function ShopMenu() {
                 className="flex justify-center items-center w-full cursor-pointer"
                 onClick={() => setActiveMenuIndex(activeMenuIndex)}
               >
-                <div className="absolute -top-3 left-0 z-10">
-                  <img src={glassOne} alt="" />
+                <div className="absolute -top-3 left-0 z-10 lg:-top-28 lg:-left-10">
+                  <img src={glassOne} alt="" className="lg:w-[150px]" />
                 </div>
                 <div className="bg-white w-[50px] h-[1.5px]"></div>
-                <h1 className="text-white font-title text-[30px] font-semibold drop-shadow-custom leading-[35px] tracking-[3%]">
+                <h1
+                  className="text-white font-title text-[30px] 
+                lg:text-[50px]
+                font-semibold drop-shadow-custom 
+                leading-[35px] tracking-[3%] lg:drop-shadow-lgScreen"
+                >
                   {menus[activeMenuIndex].description
                     ? menus[activeMenuIndex].description.toUpperCase()
                     : "Unnamed Menu"}
@@ -234,7 +249,11 @@ function ShopMenu() {
               </div>
             </CardHeader>
 
-            <CardContent className="px-3 py-4 ">
+            <CardContent
+              className="px-3 py-4 lg:grid lg:grid-cols-2
+              lg:gap-x-14  lg:gap-y-5       
+            "
+            >
               {menus[activeMenuIndex].items &&
               menus[activeMenuIndex].items.length > 0
                 ? menus[activeMenuIndex].items.map((item, itemIndex) => (
@@ -249,8 +268,12 @@ function ShopMenu() {
                 : ""}
             </CardContent>
             <CardFooter className="flex p-0 justify-end items-start h-20 w-full">
-              <div>
-                <img className="w-full h-full" src={glassTwo} alt="" />
+              <div className="lg:absolute lg:-bottom-10 lg:-right-5">
+                <img
+                  className="w-full h-full lg:w-[150px]"
+                  src={glassTwo}
+                  alt=""
+                />
               </div>
             </CardFooter>
           </Card>

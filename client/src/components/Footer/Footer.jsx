@@ -5,9 +5,21 @@ import telephone from "/src/assets/telePhone.png";
 import emailIcon from "/src/assets/Email.png";
 function Footer() {
   return (
-    <div className="w-full h-full flex flex-col bg-black px-5 py-14  mt-14">
-      <div className="flex flex-col gap-3">
-        <Card className="bg-transparent flex flex-col text-center items-center justify-center relative h-[128px]">
+    <div
+      className="w-full h-full flex flex-col bg-black px-5 py-14
+      mt-14 lg:px-24"
+    >
+      <div
+        className="flex flex-col gap-3 lg:flex-row lg:w-full
+      
+      "
+      >
+        <Card
+          className=" bg-transparent flex flex-col 
+        text-center items-center justify-center relative h-[128px]
+        lg:w-full
+        "
+        >
           <img src={Logo} alt="" className="absolute -top-8" />
           <h1 className="text-white font-title font-normal text-[30px]">
             <span className="text-[#0796EF]">DEEP</span> NET{" "}
@@ -26,7 +38,7 @@ function Footer() {
         </Card>
         <Card
           className="bg-transparent flex flex-col text-center items-center relative h-[128px] text-white
-        justify-center
+        justify-center lg:w-full
         "
         >
           <div className="mb-4 ">
@@ -59,8 +71,9 @@ function Footer() {
         </Card>
         <Card
           className="bg-transparent flex flex-col text-center items-center 
-        justify-center
-        relative h-[128px] text-white"
+        justify-center relative h-[128px] text-white
+        lg:w-full
+        "
         >
           <div className="mb-4 ">
             <h3
@@ -68,7 +81,7 @@ function Footer() {
               font-medium tracking-wide
             "
             >
-              Find us
+              FIND US
             </h3>
           </div>
           <div>
