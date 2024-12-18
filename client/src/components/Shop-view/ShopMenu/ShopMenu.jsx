@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Card,
@@ -12,7 +12,6 @@ import menuBanner3 from "/src/assets/menuBanner3.png";
 import glassOne from "/src/assets/glassOne.png";
 import glassTwo from "/src/assets/glassTwo.png";
 import { Plus } from "lucide-react";
-import ShopMenuTile from "./ShopMenuTile";
 import { Button } from "@/components/ui/button";
 import { addMenu, addMenuItem, fetchMenus } from "@/features/menu/menu-slice";
 import {
@@ -20,6 +19,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
+
+const ShopMenuTile = lazy(() => import("./ShopMenuTile"));
 
 function ShopMenu() {
   const [menuForm, setMenuForm] = useState({ name: "", description: "" });
@@ -33,11 +35,7 @@ function ShopMenu() {
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
 
   const dispatch = useDispatch();
-  const {
-    menuList: menus,
-    isLoading,
-    error,
-  } = useSelector((state) => state.menu);
+  const { menuList: menus } = useSelector((state) => state.menu);
 
   useEffect(() => {
     dispatch(fetchMenus());
@@ -74,9 +72,6 @@ function ShopMenu() {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
   return (
     <div className="w-full h-full pt-10">
       <div className="w-full h-[296px] relative">
@@ -84,6 +79,7 @@ function ShopMenu() {
           className="w-full h-full object-cover"
           src={menuBanner}
           alt="Menu Banner"
+          loading="lazy"
         />
         <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center">
           <h1
@@ -105,11 +101,11 @@ function ShopMenu() {
           </p>
         </div>
       </div>
+
       <div className="relative">
         <div
-          className="w-full h-[80px] flex items-center justify-center  overflow-y-hidden
-        overflow-x-auto gap-2 
-        "
+          className="w-full h-[80px] flex items-center justify-center overflow-y-hidden
+        overflow-x-auto gap-2"
           style={{ backgroundImage: `url(${menuBanner2})` }}
         >
           {menus.map((menu, index) => (
@@ -117,8 +113,7 @@ function ShopMenu() {
               key={index}
               className={`w-[73px] h-[32px] bg-black border-[1px] border-[#0796EF] 
           font-title text-[12px] text-white flex items-center justify-center cursor-pointer
-          flex-shrink-0 lg:h-[49px] lg:w-[114px] lg:text-[16px] lg:tracking-widest
-          `}
+          flex-shrink-0 lg:h-[49px] lg:w-[114px] lg:text-[16px] lg:tracking-widest`}
               style={{
                 backgroundColor:
                   activeMenuIndex === index ? "#0796EF" : "black",
@@ -169,6 +164,7 @@ function ShopMenu() {
         </div>
       </div>
 
+    
       <div
         className="w-full bg-cover bg-center px-5 py-10 lg:px-24"
         style={{ backgroundImage: `url(${menuBanner3})` }}
@@ -176,8 +172,7 @@ function ShopMenu() {
         {activeMenuIndex !== null && menus[activeMenuIndex] && (
           <Card
             key={menus[activeMenuIndex]._id}
-            className="w-full bg-transparent rounded-none relative 
-            text-white  mb-4 lg:px-16"
+            className="w-full bg-transparent rounded-none relative text-white mb-4 lg:px-16"
           >
             <div
               className="absolute top-2 right-2"
@@ -226,6 +221,8 @@ function ShopMenu() {
                 </PopoverContent>
               </Popover>
             </div>
+
+        
             <CardHeader className="w-full text-white text-center flex justify-center items-center">
               <div
                 className="flex justify-center items-center w-full cursor-pointer"
@@ -249,21 +246,21 @@ function ShopMenu() {
               </div>
             </CardHeader>
 
+          
             <CardContent
               className="px-3 py-4 lg:grid lg:grid-cols-2
-              lg:gap-x-14  lg:gap-y-5       
-            "
+              lg:gap-x-14  lg:gap-y-5"
             >
               {menus[activeMenuIndex].items &&
               menus[activeMenuIndex].items.length > 0
                 ? menus[activeMenuIndex].items.map((item, itemIndex) => (
-                    <div key={itemIndex}>
+                    <Suspense key={itemIndex} fallback={<div>Loading...</div>}>
                       <ShopMenuTile
                         name={item.name}
                         price={item.price}
                         description={item.description}
                       />
-                    </div>
+                    </Suspense>
                   ))
                 : ""}
             </CardContent>
@@ -273,6 +270,7 @@ function ShopMenu() {
                   className="w-full h-full lg:w-[150px]"
                   src={glassTwo}
                   alt=""
+                  loading="lazy"
                 />
               </div>
             </CardFooter>
