@@ -10,7 +10,7 @@ function Footer() {
        "
     >
       <div
-        className="flex flex-col gap-3 lg:flex-row lg:w-full px-5  lg:px-24
+        className="flex flex-col gap-3 lg:flex-row lg:w-full px-5  lg:px-24 mb-10
       
       "
       >

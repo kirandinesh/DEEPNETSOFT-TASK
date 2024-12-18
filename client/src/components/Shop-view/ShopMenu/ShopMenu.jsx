@@ -104,7 +104,7 @@ function ShopMenu() {
       <div className="relative w-full">
         <div
           className="w-full h-[80px] flex items-center  gap-2 
-           overflow-x-auto overflow-y-hidden pt-8 lg:justify-center"
+           overflow-x-auto overflow-y-hidden pt-8 lg:p-0 lg:justify-center "
           style={{ backgroundImage: `url(${menuBanner2})` }}
         >
           {menus.map((menu, index) => (
@@ -179,7 +179,7 @@ function ShopMenu() {
       </div>
 
       <div
-        className="w-full bg-cover bg-center px-5 py-10 lg:px-24"
+        className="w-full bg-cover bg-center px-5 py-10 lg:px-24 lg:mt-5"
         style={{ backgroundImage: `url(${menuBanner3})` }}
       >
         {activeMenuIndex !== null && menus[activeMenuIndex] && (
