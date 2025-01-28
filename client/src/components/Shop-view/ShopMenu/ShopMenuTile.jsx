@@ -1,6 +1,6 @@
 function ShopMenuTile({ name, description, price }) {
   return (
-    <div className="w-full h-[66px] flex flex-col">
+    <div className="w-full h-[66px] flex flex-col ">
       <div className="flex items-end ">
         <span
           className="font-title text-base lg:text-[26px]  pr-1

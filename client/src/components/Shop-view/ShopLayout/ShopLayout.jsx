@@ -14,7 +14,7 @@ function ShopLayout() {
         <header>
           <Navbar />
         </header>
-        <main className="flex-grow">
+        <main className="flex-grow mb-32">
           <ShopMenu />
         </main>
         <footer>

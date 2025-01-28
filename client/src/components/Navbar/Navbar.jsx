@@ -6,16 +6,22 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="w-full bg-[#121618] h-16 flex items-center justify-end fixed top-0 z-50">
-      {/* Mobile Menu Icon */}
+    <div className="w-full bg-[#121618] h-10 flex items-center justify-end fixed top-0 z-50">
+      {/* Mobile */}
       <Menu
-        className="text-white lg:hidden cursor-pointer mr-4"
+        className="text-white lg:hidden cursor-pointer mr-4 relative"
         onClick={() => setMenuOpen(!menuOpen)}
       />
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 md:hidden">
+        <img
+          src={Logo}
+          alt="Deep Net Soft Logo"
+          className="w-[50px] h-[44px]"
+        />
+      </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-[#121618] flex flex-col items-center py-4 lg:hidden">
+        <div className="absolute top-10 left-0 w-full bg-[#121618] flex flex-col items-center py-4 lg:hidden">
           <ul className="text-white space-y-4">
             <li className="cursor-pointer">HOME</li>
             <li className="cursor-pointer text-[#0796EF]">MENU</li>
@@ -29,7 +35,7 @@ function Navbar() {
         </div>
       )}
 
-      {/* Desktop Navbar */}
+      {/* Desktop */}
       <div className="hidden lg:flex justify-between w-full px-24 relative">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 absolute top-2">

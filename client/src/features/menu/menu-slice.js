@@ -7,58 +7,35 @@ const initialState = {
   error: null,
 };
 
-export const fetchMenus = createAsyncThunk(
-  "menu/fetchMenus",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/menu`
-      );
-      console.log(response?.data);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Failed to fetch menus"
-      );
-    }
-  }
-);
+export const fetchMenus = createAsyncThunk("menu/fetchMenus", async () => {
+  const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/menu`);
+  console.log(response?.data);
+  return response.data;
+});
 
 export const addMenu = createAsyncThunk(
   "menu/addMenu",
-  async ({ name, description }, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/menu`,
-        {
-          name,
-          description,
-          items: [],
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Failed to add menu"
-      );
-    }
+  async ({ name, description }) => {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/menu`,
+      {
+        name,
+        description,
+        items: [],
+      }
+    );
+    return response.data;
   }
 );
 
 export const addMenuItem = createAsyncThunk(
   "menu/addMenuItem",
-  async ({ menuId, item }, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/menu/${menuId}/items`,
-        item
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Failed to add item to menu"
-      );
-    }
+  async ({ menuId, item }) => {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/menu/${menuId}/items`,
+      item
+    );
+    return response.data;
   }
 );
 
