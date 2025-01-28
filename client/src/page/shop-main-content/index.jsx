@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { addMenu, addMenuItem, fetchMenus } from "@/features/menu/menu-slice";
-import { Skeleton } from "@/components/ui/skeleton";
+import Loader from "@/components/Loader";
 
 function MenuContent() {
   const initialItemForm = { name: "", description: "", price: "" };
@@ -40,12 +40,12 @@ function MenuContent() {
 
   return (
     <div className="w-full text-white ">
-      <Tabs defaultValue="DRINKS">
-        <div className="flex flex-col justify-center items-center">
-          <div className="w-full flex xl:justify-center overflow-x-auto my-4">
-            {isLoading ? (
-              <Skeleton />
-            ) : (
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Tabs defaultValue="DRINKS">
+          <div className="flex flex-col justify-center items-center">
+            <div className="w-full flex xl:justify-center overflow-x-auto my-4">
               <TabsList className="flex gap-2  whitespace-nowrap px-4">
                 {menuList.map((menuitems, index) => (
                   <TabsTrigger
@@ -59,50 +59,46 @@ function MenuContent() {
                   </TabsTrigger>
                 ))}
               </TabsList>
-            )}
-          </div>
+            </div>
 
-          <div className="mb-2">
-            <Popover>
-              <PopoverTrigger>
-                <Button>ADD NEW TAB</Button>
-              </PopoverTrigger>
-              <PopoverContent className="bg-black">
-                <div className="flex flex-col gap-3">
-                  <Input
-                    type="text"
-                    placeholder="Menu Name"
-                    value={menuForm.name}
-                    onChange={(e) =>
-                      setMenuForm({ ...menuForm, name: e.target.value })
-                    }
-                  />
-                  <Input
-                    type="text"
-                    placeholder="Description"
-                    value={menuForm.description}
-                    onChange={(e) =>
-                      setMenuForm({
-                        ...menuForm,
-                        description: e.target.value,
-                      })
-                    }
-                  />
-                  <Button onClick={handleAddMenu}>Add Tab</Button>
-                </div>
-              </PopoverContent>
-            </Popover>
+            <div className="mb-2">
+              <Popover>
+                <PopoverTrigger>
+                  <Button>ADD NEW TAB</Button>
+                </PopoverTrigger>
+                <PopoverContent className="bg-black">
+                  <div className="flex flex-col gap-3">
+                    <Input
+                      type="text"
+                      placeholder="Menu Name"
+                      value={menuForm.name}
+                      onChange={(e) =>
+                        setMenuForm({ ...menuForm, name: e.target.value })
+                      }
+                    />
+                    <Input
+                      type="text"
+                      placeholder="Description"
+                      value={menuForm.description}
+                      onChange={(e) =>
+                        setMenuForm({
+                          ...menuForm,
+                          description: e.target.value,
+                        })
+                      }
+                    />
+                    <Button onClick={handleAddMenu}>Add Tab</Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
-        </div>
-        {menuList.map((menuitems, index) => (
-          <TabsContent
-            key={index}
-            value={menuitems?.name}
-            className="mx-5 lg:px-24 "
-          >
-            {isLoading ? (
-              <Skeleton />
-            ) : (
+          {menuList.map((menuitems, index) => (
+            <TabsContent
+              key={index}
+              value={menuitems?.name}
+              className="mx-5 lg:px-24 "
+            >
               <div className="border-[#FFFFFF] border-[1px] flex flex-col w-full lg:gap-10 gap-4  p-5 relative">
                 <div className="absolute -top-5 -left-2 z-10 lg:-top-28 lg:-left-10">
                   <img
@@ -176,10 +172,10 @@ function MenuContent() {
                 </div>
                 <MenuItemList items={menuitems?.items} menuList={menuitems} />
               </div>
-            )}
-          </TabsContent>
-        ))}
-      </Tabs>
+            </TabsContent>
+          ))}
+        </Tabs>
+      )}
     </div>
   );
 }
