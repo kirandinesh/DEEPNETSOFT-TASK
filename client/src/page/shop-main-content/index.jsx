@@ -35,7 +35,7 @@ function MenuContent() {
   };
   useEffect(() => {
     dispatch(fetchMenus());
-  }, [dispatch]);
+  }, []);
 
   console.log(menuList, "menu");
   return (
