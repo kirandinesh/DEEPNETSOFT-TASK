@@ -1,8 +1,6 @@
 import ShopMenuTile from "@/components/Shop-view/ShopMenu/ShopMenuTile";
 
 function MenuItemList({ items, index, menuList }) {
-  console.log(menuList?.description);
-  console.log(items);
   return (
     <div
       className="py-3 flex flex-col gap-2 lg:px-10 lg:py-4 lg:grid lg:grid-cols-2
